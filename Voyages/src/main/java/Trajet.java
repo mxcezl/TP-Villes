@@ -92,6 +92,42 @@ public class Trajet {
 		return listeTrajets;
 	}
 	
+	// Retourne une liste de trajets "simples" avec uniquement la ville de depart, d'arrivée et le moyen
+	public static List<Trajet> chargerTrajetsSimple(String... paths) {
+		List<Trajet> listeTrajets = new ArrayList<>();
+		
+		for(String path : paths) {
+			try {
+				Reader reader = Files.newBufferedReader(Paths.get(path));
+				CSVReader csvReader = new CSVReader(reader);
+				String[] nextRecord;
+				
+				// Passer l'entete
+				csvReader.readNext();
+				
+				while ((nextRecord = csvReader.readNext()) != null) {
+					Trajet temp = new Trajet();
+					
+					String originLocal = nextRecord[0];
+					String destinationLocal = nextRecord[1];
+					Moyen meansLocal = Moyen.valueOf(nextRecord[2].trim().toUpperCase());
+					
+					temp.setOrigine(originLocal);
+					temp.setDestination(destinationLocal);
+					temp.setMeans(meansLocal);
+					
+					listeTrajets.add(temp);
+				}
+				
+				csvReader.close(); // Ferme le stream
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return listeTrajets;
+	}
+	
 	public static HashMap<LocalTime, LocalTime> calcule(LocalTime departureTime, int duration, int frequence, int repetitions) {
 		HashMap<LocalTime, LocalTime> map = new HashMap<>();
 		
