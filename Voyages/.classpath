@@ -15,5 +15,6 @@
 	<classpathentry kind="lib" path="javaFx/javafx.media.jar"/>
 	<classpathentry kind="lib" path="javaFx/javafx.swing.jar"/>
 	<classpathentry kind="lib" path="javaFx/javafx.web.jar"/>
+	<classpathentry kind="lib" path="javaFx/javafx.controls.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -37,6 +37,19 @@ public class Trajet {
 		return listeTrajet;
 	}
 	
+	public static List<Trajet> trouverTrajetHeure(List<Trajet> listeTrajet, LocalTime departTime, int delai) {
+		
+		List<Trajet> output = new ArrayList<>();
+		LocalTime departDelaiMax = departTime.plusMinutes(delai);
+		listeTrajet.stream().forEach(t -> {
+			if((t.getDepartureTime().equals(departTime) || t.getDepartureTime().isAfter(departTime)) && t.getDepartureTime().isBefore(departDelaiMax)) {
+				output.add(t);
+			}
+		});
+		
+		return output;
+	}
+	
 	public static List<Trajet> chargerTrajets(String... paths) {
 		List<Trajet> listeTrajets = new ArrayList<>();
 		
