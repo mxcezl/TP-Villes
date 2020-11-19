@@ -30,6 +30,5 @@ public class MainClass extends Application{
 
 	public static void main(String[] args) {
 		launch(args);
-		//david.dupont1234@gmail.com
 	}
 }
