@@ -13,6 +13,8 @@ public class Ville {
 	private int x;
 	private int y;
 	
+	// Constructeurs
+	
 	public Ville() { super(); }
 	
 	public Ville(String nom, int x, int y) {
@@ -22,6 +24,7 @@ public class Ville {
 		this.y = y;
 	}
 	
+	// Methode static renvoyant une liste de villes chargée depuis un fichier CSV
 	public static List<Ville> chargerVilles(String pathCsv) {
 		List<Ville> listeVille = new ArrayList<>();
 		try {
@@ -49,9 +52,12 @@ public class Ville {
 		return listeVille;
 	}
 	
+	// Methode statique renvoyant la distance entre deux villes
 	public static double getDist(Ville a, Ville b) {
 		return Math.sqrt(Math.pow((a.getX() - b.getX()), 2) + Math.pow((a.getY() - b.getY()), 2));
 	}
+	
+	// Getters / Setters
 	public String getNom() {
 		return nom;
 	}

@@ -21,27 +21,31 @@ public class Trajet {
 	private int co2;
 	private int confort;
 	
+	// Constructeur
 	public Trajet() {}
 	
-	
 
+	// Methode statique renvoyant un trajet allant de start à end qui est dans listeIn
 	public static List<Trajet> trouverTrajetSimple(List<Trajet> listeIn, String start, String end) {
 		List<Trajet> listeTrajet = new ArrayList<>();
 		
-		for(Trajet t : listeIn) {
+		listeIn.stream().forEach(t -> {
 			if(start.equals(t.getOrigine()) && end.equals(t.getDestination())) {
 				listeTrajet.add(t);
 			}
-		}
+		});
 		
 		return listeTrajet;
 	}
 	
+	// Methode statique renvoyant tout les trajets partant à departTime avec un délai de 'delai' dans une liste de trajets listeTrajets
 	public static List<Trajet> trouverTrajetHeure(List<Trajet> listeTrajet, LocalTime departTime, int delai) {
 		
 		List<Trajet> output = new ArrayList<>();
 		LocalTime departDelaiMax = departTime.plusMinutes(delai);
 		listeTrajet.stream().forEach(t -> {
+			
+			// On verifie pour chaque trajet dans la liste si l'heure de départ est comprise entre departTime et departTime + delai
 			if((t.getDepartureTime().equals(departTime) || t.getDepartureTime().isAfter(departTime)) && t.getDepartureTime().isBefore(departDelaiMax)) {
 				output.add(t);
 			}
@@ -50,6 +54,7 @@ public class Trajet {
 		return output;
 	}
 	
+	// Methode statique renvoyant une liste de trajets chargée depuis un fichier CSV
 	public static List<Trajet> chargerTrajets(String... paths) {
 		List<Trajet> listeTrajets = new ArrayList<>();
 		
@@ -141,6 +146,7 @@ public class Trajet {
 		return listeTrajets;
 	}
 	
+	// Methode qui calcule les heures de departs et heures d'arrivées en fonction du premier horaire et du nombre de répétitions
 	public static HashMap<LocalTime, LocalTime> calcule(LocalTime departureTime, int duration, int frequence, int repetitions) {
 		HashMap<LocalTime, LocalTime> map = new HashMap<>();
 		
@@ -153,6 +159,7 @@ public class Trajet {
 		return map;
 	}
 	
+	// Getters / Setters
 	public LocalTime getArrivalTime() {
 		return arrivalTime;
 	}
