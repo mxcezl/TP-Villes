@@ -21,7 +21,7 @@ public class MainClass extends Application{
 	    
 	    // Ajout du titre et de la scene
 	    primaryStage.setTitle("Recherche de trajets - TransPoule");
-	    primaryStage.setScene(new Scene(rootFXML, 600, 343));
+	    primaryStage.setScene(new Scene(rootFXML, 600, 419));
 	    
 	    // Affiche la fenetre
 	    primaryStage.show();
